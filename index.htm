@@ -11,6 +11,7 @@
 <body>
 
    <div class="mb-4" style="text-align: center;">
+      <button id="all" class="btn btn-secondary m-2">All</button>
       <button id="work" class="btn btn-secondary m-2">Work</button>
       <button id="family" class="btn btn-secondary m-2">Family</button>
       <button id="friend" class="btn btn-secondary m-2">Friend</button>
@@ -18,14 +19,14 @@
 
    <div class="box w-100">
       
-      <form class="form w-100">
+      <form class="form w-75">
          <h1 class="mb-4">New Contact</h1>
          <div class="input-group mb-3 w-50">
-            <input id="nameInp" type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+            <input id="nameInp" type="text" class="input form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
          </div>
           
          <div class="input-group mb-3 w-50">
-            <input id="relInp" type="text" class="form-control" placeholder="Relationship" list="date" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input id="relInp" type="text" class="input form-control" placeholder="Relationship" list="date" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <datalist id="date">
                <option>Work</option>
                <option>Family</option>
@@ -34,36 +35,27 @@
          </div>
       
          <div class="input-group mb-3 w-50">
-            <input id="numInp" type="number" class="form-control" placeholder="Number" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input id="numInp" type="tel" class="input form-control" placeholder="Number" aria-label="Recipient's username" aria-describedby="basic-addon2">
          </div>
       
          <button id="btn" class="btn btn-primary">Contact</button>
       </form>
 
-      <ul class="list w-100">
-         <h1 class="mb-4">Contact</h1>
-         <li class="item col-sm-12 mb-3 work">
-            <div class="card card-body">
-               <h5 class="card-title">Saud Abdulvaheed</h5>
-               <p class="card-text">Work</p>
-               <a href="#" class="btn btn-success w-25">+998330012223</a>
+    <div class="w-50">
+      <div>
+         <h1 class="mb-4 text-left">Contact</h1>
+      </div>
+      <ul class="list" style="padding: 0;">
+         <template id="template">
+            <div class="card card-body mb-3">
+               <h3 class="card-title"></h3>
+               <p class="card-text"></p>
+               <a class="tel-number btn btn-success w-25" href="tel:+99"></a>
+               <a class="tel-number2" href="tel:+99"></a>
             </div>
-          </li>
-          <li class="item col-sm-12 mb-3 family">
-            <div class="card card-body">
-               <h5 class="card-title">John Watson</h5>
-               <p class="card-text">Family</p>
-               <a href="#" class="btn btn-success w-25">+998333303100</a>
-            </div>
-          </li>
-          <li class="item col-sm-12 mb-3 friend">
-            <div class="card card-body">
-               <h5 class="card-title">Sherlock Holms</h5>
-               <p class="card-text">Friend</p>
-               <a href="#" class="btn btn-success w-25">+998337773773</a>
-            </div>
-          </li>
+         </template>
       </ul>
+    </div>
 
    </div>
 

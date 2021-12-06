@@ -2,84 +2,59 @@ let nameInp = document.querySelector('#nameInp');
 let relInp = document.querySelector('#relInp');
 let numInp = document.querySelector('#numInp');
 let btn = document.querySelector('#btn');
-
+const elForm = document.querySelector(".form")
 let list = document.querySelector('.list');
+
 let arr = [];
 
+let allBtn = document.querySelector('#all');
 let workBtn = document.querySelector('#work');
 let familyBtn = document.querySelector('#family');
 let friendBtn = document.querySelector('#friend');
+let template = document.querySelector("#template").content;
 
-workBtn.addEventListener('click', function() {
-
-   for (let i = 0; i < arr.length; i++) {
-
-      if (arr[i].job == 'work') {
-         
-         arr[i].style.display = 'none';
-      }
-
-   }
-   
-});
-
-btn.addEventListener('click', function(e) {
+elForm.addEventListener('submit', function (e) {
    e.preventDefault();
-
    let obj = {
-      name: numInp.value,
+      name: nameInp.value,
       job: relInp.value,
       num: numInp.value
    };
-
-   let li = document.createElement('li');
-   let div = document.createElement('div');
-   let h5 = document.createElement('h5');
-   let p = document.createElement('p');
-   let a = document.createElement('a');
-
-   if (!numInp.value == '' && !relInp.value == '' && !numInp.value == '') {
-
-      list.appendChild(li);
-      li.className = 'item col-sm-12 mb-3';
-      li.appendChild(div);
-      div.className = 'card card-body';
-      div.appendChild(h5);
-      h5.className = 'card-title';
-      div.appendChild(p);
-      p.className = 'card-text';
-      div.appendChild(a);
-      a.className = 'btn btn-success w-25';
-
-      h5.appendChild(document.createTextNode(nameInp.value));
-      p.appendChild(document.createTextNode(relInp.value));
-      a.appendChild(document.createTextNode(numInp.value));
-
-      if (relInp.value == 'work') {
-         li.className = 'item col-sm-12 mb-3 work';
-         arr.push(li);
-      }
-
-      if (relInp.value == 'family') {
-         li.className = 'item col-sm-12 mb-3 family';
-         arr.push(li);
-      }
-
-      if (relInp.value == 'friend') {
-         li.className = 'item col-sm-12 mb-3 friend';
-         arr.push(li);
-      }
-      console.log(arr);
-
-      arr.push(obj);
-
-      console.log(obj);
-
-   }
-
-   nameInp.value = '';
-   relInp.value = '';
-   numInp.value = '';
+   arr.push(obj);
+   render(arr);
 })
 
+function render(array) {
 
+   list.innerHTML = "";
+
+   array.forEach(item => {
+      let newTemp = template.cloneNode(true);
+      newTemp.querySelector(".card-title").textContent = item.name;
+      newTemp.querySelector(".card-text").textContent = item.job;
+      newTemp.querySelector(".tel-number").textContent = item.num;
+
+      list.append(newTemp);
+   });
+   
+   document.querySelectorAll('.input').forEach(inp => {inp.value = ''})
+}
+
+allBtn.addEventListener('click', function () {
+   render(arr)
+});
+
+workBtn.addEventListener('click', function () {
+   let filter = arr.filter(item => item.job == "Work")
+   render(filter)
+});
+
+familyBtn.addEventListener('click', function () {
+   let filter = arr.filter(item => item.job == "Family")
+   render(filter)
+});
+
+friendBtn.addEventListener('click', function () {
+   let filter = arr.filter(item => item.job == "Friend")
+   render(filter)
+});
