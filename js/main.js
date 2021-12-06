@@ -15,13 +15,15 @@ let template = document.querySelector("#template").content;
 
 elForm.addEventListener('submit', function (e) {
    e.preventDefault();
-   let obj = {
-      name: nameInp.value,
-      job: relInp.value,
-      num: numInp.value
-   };
-   arr.push(obj);
-   render(arr);
+   if (!nameInp.value == '' && !relInp.value == '' && !numInp.value == '') {
+      let obj = {
+         name: nameInp.value,
+         job: relInp.value,
+         num: numInp.value
+      };
+      arr.push(obj);
+      render(arr);
+   }
 })
 
 function render(array) {
